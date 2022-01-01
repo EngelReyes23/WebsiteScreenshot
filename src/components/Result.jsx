@@ -1,28 +1,46 @@
+import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
-import { generateScreenshotUrl, handleDownload } from "../helpers/functions";
+import { generateScreenshotUrl } from "../helpers/functions";
+import style from "./Spinner.module.css";
 
-export const Result = ({ url }) => {
-	const [urlDownload, setUrlDownload] = useState("");
+const Spinner = () => <div className={style.gyro}></div>;
+
+export const Result = ({ url, color }) => {
+	// Download URL
+	const [downloadUrl, setDownloadUrl] = useState("");
+	const [isVisible, setIsVisible] = useState(false);
 
 	useEffect(() => {
-		generateScreenshotUrl(url).then((res) => {
-			setUrlDownload(res);
+		generateScreenshotUrl(url, color.replace("#", "")).then((res) => {
+			setIsVisible(false);
+			setDownloadUrl(res);
 		});
-	}, [url]);
+	}, [url, color]);
 
 	return (
 		// TODO: Trabajar en el diseño del resultado
 		<div>
 			<h2>Result</h2>
-			<img src={urlDownload} alt="screenshot" />
-			<br />
-			<button
-				onClick={() => {
-					handleDownload(urlDownload);
-				}}
-			>
-				Download
-			</button>
+
+			{!isVisible && <Spinner />}
+
+			<div>
+				<img
+					hidden={!isVisible}
+					src={downloadUrl}
+					alt="screenshot"
+					onChange={() => setIsVisible(false)}
+					onLoad={() => {
+						console.log(isVisible);
+						setIsVisible(true);
+					}}
+				/>
+			</div>
 		</div>
 	);
+};
+
+// PROPERTY REFUND
+Result.propTypes = {
+	url: PropTypes.string.isRequired,
 };

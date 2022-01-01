@@ -4,6 +4,8 @@ import { validateUrl } from "./helpers/functions";
 
 function App() {
 	const [url, setUrl] = useState("");
+	const [color, setColor] = useState("");
+	const [validUrl, setValidUrl] = useState("");
 	const [isValid, setIsValid] = useState(false);
 
 	// TODO: trabajar en el diseño
@@ -11,16 +13,33 @@ function App() {
 		<>
 			<h1>WebsiteScreenshot</h1>
 
-			<input
-				type="text"
-				value={url}
-				onChange={({ target }) => {
-					setUrl(target.value);
-					setIsValid(validateUrl(url));
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+					setIsValid(true);
+					setValidUrl(url);
 				}}
-			/>
+			>
+				<input
+					type="text"
+					value={url}
+					onChange={({ target }) => {
+						setUrl(target.value);
+					}}
+				/>
 
-			{isValid && <Result url={url} />}
+				<input
+					type="color"
+					value={color}
+					onChange={({ target }) => {
+						setColor(target.value);
+					}}
+				/>
+
+				<button disabled={!validateUrl(url)}>Generate Screenshot</button>
+			</form>
+
+			{isValid && <Result url={validUrl} color={color} />}
 		</>
 	);
 }
