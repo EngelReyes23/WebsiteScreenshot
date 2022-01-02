@@ -35,13 +35,13 @@ export const Result = ({ url, color, setIsValid }) => {
 						<a download="Screenshot.png" href={downloadUrl}>
 							Download
 						</a>
-						<a
+						<button
 							onClick={() => {
 								setIsValid(false);
 							}}
 						>
 							Back
-						</a>
+						</button>
 					</div>
 				</>
 			)}
