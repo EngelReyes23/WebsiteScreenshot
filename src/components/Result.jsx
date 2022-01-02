@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { generateScreenshotUrl } from "../helpers/functions";
 import style from "./Spinner.module.css";
 
-const Spinner = () => <div className={style.gyro}></div>;
+const Spinner = () => <div className={style.loader} />;
 
 export const Result = ({ url, color, setIsValid }) => {
 	// Download URL
