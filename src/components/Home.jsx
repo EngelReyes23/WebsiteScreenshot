@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Form } from "./Form";
 import { Result } from "./Result";
 
@@ -9,6 +9,8 @@ export const Home = () => {
 
 	return (
 		<>
+			<h1>Website Screenshot</h1>
+
 			{!isValid ? (
 				<Form setUrl={setUrl} setColor={setColor} setIsValid={setIsValid} />
 			) : (

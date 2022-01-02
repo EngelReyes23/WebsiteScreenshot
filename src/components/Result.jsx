@@ -32,10 +32,7 @@ export const Result = ({ url, color, setIsValid }) => {
 			{!isVisible ? (
 				<Spinner color={color} />
 			) : (
-				<>
-					<div>
-						<img src={downloadUrl} alt="screenshot" />
-					</div>
+				<section>
 					<div>
 						<button
 							onClick={() => {
@@ -48,7 +45,10 @@ export const Result = ({ url, color, setIsValid }) => {
 							Download
 						</a>
 					</div>
-				</>
+					<div>
+						<img src={downloadUrl} alt="screenshot" />
+					</div>
+				</section>
 			)}
 		</div>
 	);

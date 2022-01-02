@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { useState } from "react";
 import { validateUrl } from "../helpers/functions";
 
 export const Form = ({ setUrl, setColor, setIsValid }) => {
@@ -44,4 +45,11 @@ export const Form = ({ setUrl, setColor, setIsValid }) => {
 			</form>
 		</fieldset>
 	);
+};
+
+// PROPERTY REFUND
+Form.propTypes = {
+	setUrl: PropTypes.func.isRequired,
+	setColor: PropTypes.func.isRequired,
+	setIsValid: PropTypes.func.isRequired,
 };
