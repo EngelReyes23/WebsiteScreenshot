@@ -1,19 +1,21 @@
 import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { generateScreenshotUrl } from "../helpers/functions";
 import style from "./Spinner.module.css";
 
 const Spinner = () => <div className={style.gyro}></div>;
 
-export const Result = ({ url, color }) => {
+export const Result = ({ url, color, setIsValid }) => {
 	// Download URL
 	const [downloadUrl, setDownloadUrl] = useState("");
 	const [isVisible, setIsVisible] = useState(false);
 
 	useEffect(() => {
+		setIsVisible(false);
+
 		generateScreenshotUrl(url, color.replace("#", "")).then((res) => {
-			setIsVisible(false);
 			setDownloadUrl(res);
+			setIsVisible(true);
 		});
 	}, [url, color]);
 
@@ -22,20 +24,27 @@ export const Result = ({ url, color }) => {
 		<div>
 			<h2>Result</h2>
 
-			{!isVisible && <Spinner />}
-
-			<div>
-				<img
-					hidden={!isVisible}
-					src={downloadUrl}
-					alt="screenshot"
-					onChange={() => setIsVisible(false)}
-					onLoad={() => {
-						console.log(isVisible);
-						setIsVisible(true);
-					}}
-				/>
-			</div>
+			{!isVisible ? (
+				<Spinner />
+			) : (
+				<>
+					<div>
+						<img src={downloadUrl} alt="screenshot" />
+					</div>
+					<div>
+						<a download="Screenshot.png" href={downloadUrl}>
+							Download
+						</a>
+						<a
+							onClick={() => {
+								setIsValid(false);
+							}}
+						>
+							Back
+						</a>
+					</div>
+				</>
+			)}
 		</div>
 	);
 };
