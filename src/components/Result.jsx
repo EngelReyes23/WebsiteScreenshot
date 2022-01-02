@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { generateScreenshotUrl } from "../helpers/functions";
 import style from "./Spinner.module.css";
 
-const Spinner = () => <div className={style.loader} />;
+const Spinner = ({ color }) => (
+	<div
+		style={{ color: color, backgroundColor: color }}
+		className={style.loader}
+	/>
+);
 
 export const Result = ({ url, color, setIsValid }) => {
 	// Download URL
@@ -25,22 +30,22 @@ export const Result = ({ url, color, setIsValid }) => {
 			<h2>Result</h2>
 
 			{!isVisible ? (
-				<Spinner />
+				<Spinner color={color} />
 			) : (
 				<>
 					<div>
 						<img src={downloadUrl} alt="screenshot" />
 					</div>
 					<div>
-						<a download="Screenshot.png" href={downloadUrl}>
-							Download
-						</a>
-						<a
+						<button
 							onClick={() => {
 								setIsValid(false);
 							}}
 						>
 							Back
+						</button>
+						<a download="Screenshot.png" href={downloadUrl}>
+							Download
 						</a>
 					</div>
 				</>
@@ -52,4 +57,6 @@ export const Result = ({ url, color, setIsValid }) => {
 // PROPERTY REFUND
 Result.propTypes = {
 	url: PropTypes.string.isRequired,
+	color: PropTypes.string.isRequired,
+	setIsValid: PropTypes.func.isRequired,
 };
