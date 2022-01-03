@@ -1,0 +1,75 @@
+.container {
+	border: solid 5px #ccc;
+	border-radius: 10px;
+	padding: 1em;
+	background-color: #ffff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.input_container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.gridColors {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	justify-content: center;
+	align-items: center;
+}
+
+.color {
+	width: 50px;
+	height: 50px;
+	border: solid 1px #ccc;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	justify-content: center;
+	align-items: center;
+}
+
+.button {
+	display: block;
+	text-align: center;
+	padding: 0.5em;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 100%;
+	max-width: 200px;
+}
+
+.button_random {
+	display: block;
+	text-align: center;
+	padding: 0.5em;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	cursor: pointer;
+	color: #ffff;
+	text-shadow: 2px 2px 5px #000;
+	width: 100%;
+	max-width: 200px;
+	background: linear-gradient(
+		to right,
+		red 0%,
+		#ff0 17%,
+		lime 33%,
+		cyan 50%,
+		blue 66%,
+		#f0f 83%,
+		red 100%
+	);
+}
+
+.button_random span {
+	font-weight: bold;
+}
