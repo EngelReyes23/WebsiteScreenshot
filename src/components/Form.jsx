@@ -1,35 +1,14 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { validateUrl } from "../helpers/functions";
+import { getRandomColors, validateUrl } from "../helpers/functions";
 import style from "./css/Form.module.css";
 
 export const Form = ({ setUrl, setColor, setIsValid }) => {
-	// array de colores aleatorios
-	const colors = [
-		"#FFF8F3",
-		"#A3E4DB",
-		"#1C6DD0",
-		"#FED1EF",
-		"#6A097D",
-		"#DA0037",
-		"#444444",
-		"#171717",
-	];
-
 	const [webAddress, setWebAddress] = useState("");
 	const [selectedColor, setSelectedColor] = useState("#0000ff");
-	const [colorList, setColorList] = useState(colors);
+	const [colorList, setColorList] = useState(getRandomColors());
 
-	const generateRandomColor = () => {
-		setColorList([]);
-		for (let i = 1; i <= 8; i++) {
-			let hex = Math.floor(Math.random() * 16777215).toString(16);
-			while (hex.length < 6) {
-				hex = "0" + hex;
-			}
-			setColorList((colorList) => [...colorList, "#" + hex]);
-		}
-	};
+	console.table(colorList);
 
 	return (
 		<section className={style.container} style={{ borderColor: selectedColor }}>
@@ -61,7 +40,7 @@ export const Form = ({ setUrl, setColor, setIsValid }) => {
 			<div className={style.buttons}>
 				<button
 					className={(style.button, style.button_random)}
-					onClick={() => generateRandomColor()}
+					onClick={() => setColorList(getRandomColors())}
 				>
 					<span>Generate Random Colors</span>
 				</button>
