@@ -1,14 +1,9 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { generateScreenshotUrl } from "../helpers/functions";
-import resultStyle from "./css/Result.module.css";
-import style from "./Spinner.module.css";
 
 const Spinner = ({ color }) => (
-	<div
-		style={{ color: color, backgroundColor: color }}
-		className={style.loader}
-	/>
+	<div style={{ color: color, backgroundColor: color }} />
 );
 
 export const Result = ({ url, color, setIsValid }) => {
@@ -31,27 +26,18 @@ export const Result = ({ url, color, setIsValid }) => {
 			{!isVisible ? (
 				<Spinner color={color} />
 			) : (
-				<section className={resultStyle.section}>
-					<div className={resultStyle.buttons}>
+				<section>
+					<div>
 						<button
-							style={{ backgroundColor: color }}
-							className={resultStyle.button}
 							onClick={() => {
 								setIsValid(false);
 							}}
 						>
 							Back
 						</button>
-						<a
-							style={{ backgroundColor: color }}
-							className={resultStyle.button}
-							download="Screenshot.png"
-							href={downloadUrl}
-						>
-							Download
-						</a>
+						<a href={downloadUrl}>Download</a>
 					</div>
-					<div className={resultStyle.img_container}>
+					<div>
 						<img src={downloadUrl} alt="screenshot" />
 					</div>
 				</section>

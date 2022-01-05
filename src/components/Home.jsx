@@ -1,5 +1,4 @@
 import { useState } from "react";
-import style from "./css/Home.module.css";
 import { Form } from "./Form";
 import { Result } from "./Result";
 
@@ -10,9 +9,9 @@ export const Home = () => {
 
 	return (
 		<>
-			<h1 className={style.title}>Website Screenshots</h1>
+			<h1>Website Screenshots</h1>
 
-			<main className={style.container}>
+			<main>
 				{!isValid ? (
 					<Form setUrl={setUrl} setColor={setColor} setIsValid={setIsValid} />
 				) : (
