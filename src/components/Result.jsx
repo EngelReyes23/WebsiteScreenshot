@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { generateScreenshotUrl } from "../helpers/functions";
-import style from "./Spinner.module.css";
 
-const Spinner = () => <div className={style.loader} />;
+const Spinner = ({ color }) => (
+	<div style={{ color, backgroundColor: color }} className="loader" />
+);
 
 export const Result = ({ url, color, setIsValid }) => {
 	// Download URL
@@ -22,28 +23,33 @@ export const Result = ({ url, color, setIsValid }) => {
 	return (
 		// TODO: Trabajar en el diseño del resultado
 		<div>
-			<h2>Result</h2>
-
 			{!isVisible ? (
-				<Spinner />
+				<Spinner color={color} />
 			) : (
-				<>
-					<div>
-						<img src={downloadUrl} alt="screenshot" />
-					</div>
-					<div>
-						<a download="Screenshot.png" href={downloadUrl}>
-							Download
-						</a>
+				<section className="result animate__animated animate__fadeIn">
+					<div className="result__buttons animate__animated animate__slideInUp animate__delay-1s">
 						<button
+							className="button button--result"
+							style={{ backgroundColor: color }}
 							onClick={() => {
 								setIsValid(false);
 							}}
 						>
 							Back
 						</button>
+						<a
+							download="Screenshot.png"
+							className="button button--result"
+							style={{ backgroundColor: color }}
+							href={downloadUrl}
+						>
+							Download
+						</a>
 					</div>
-				</>
+					<div className="result__img">
+						<img src={downloadUrl} alt="screenshot" />
+					</div>
+				</section>
 			)}
 		</div>
 	);
@@ -52,4 +58,6 @@ export const Result = ({ url, color, setIsValid }) => {
 // PROPERTY REFUND
 Result.propTypes = {
 	url: PropTypes.string.isRequired,
+	color: PropTypes.string.isRequired,
+	setIsValid: PropTypes.func.isRequired,
 };

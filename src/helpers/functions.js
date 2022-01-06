@@ -19,3 +19,26 @@ export const generateScreenshotUrl = async (url, color = "0000ff") => {
 		color;
 	return await generateDownloadUrl(apiUrl);
 };
+
+// Return an array of 8 random colors
+export const getRandomColors = () => {
+	// Generates an RGB color
+	const generateColor = () => {
+		const r = Math.floor(Math.random() * 256);
+		const g = Math.floor(Math.random() * 256);
+		const b = Math.floor(Math.random() * 256);
+		return [r, g, b];
+	};
+
+	// Generates an HEX color
+	const generateHexColor = (color) =>
+		"#" + color.map((c) => c.toString(16).padStart(2, "0")).join("");
+
+	// Generates an array of 8 random colors
+	const colors = [];
+	for (let i = 0; i < 8; i++) {
+		colors.push(generateHexColor(generateColor()));
+	}
+
+	return colors;
+};

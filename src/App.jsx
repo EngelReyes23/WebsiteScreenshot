@@ -1,14 +1,8 @@
-import React from "react";
-import { Form } from "./components/Form";
+import { Home } from "./components/Home";
 
 function App() {
 	// TODO: trabajar en el diseño
-	return (
-		<>
-			<h1>Website Screenshot</h1>
-			<Form />
-		</>
-	);
+	return <Home />;
 }
 
 export default App;
