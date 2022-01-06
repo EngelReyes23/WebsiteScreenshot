@@ -26,10 +26,10 @@ export const Result = ({ url, color, setIsValid }) => {
 			{!isVisible ? (
 				<Spinner color={color} />
 			) : (
-				<section className="result">
-					<div className="result__buttons">
+				<section className="result animate__animated animate__fadeIn">
+					<div className="result__buttons animate__animated animate__slideInUp animate__delay-1s">
 						<button
-							className="button"
+							className="button button--result"
 							style={{ backgroundColor: color }}
 							onClick={() => {
 								setIsValid(false);
@@ -38,7 +38,8 @@ export const Result = ({ url, color, setIsValid }) => {
 							Back
 						</button>
 						<a
-							className="button"
+							download="Screenshot.png"
+							className="button button--result"
 							style={{ backgroundColor: color }}
 							href={downloadUrl}
 						>

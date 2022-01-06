@@ -8,16 +8,22 @@ export const Form = ({ setUrl, setColor, setIsValid }) => {
 	const [colorList, setColorList] = useState(getRandomColors());
 
 	return (
-		<section className="form" style={{ borderColor: selectedColor }}>
-			<div className="form__input">
-				<label htmlFor="webAddress">Web Address:</label>
+		<section
+			className="form animate__animated animate__fadeIn"
+			style={{ borderColor: selectedColor }}
+		>
+			<div className="form__group">
 				<input
 					type="text"
+					className="form__field"
 					placeholder="https://example.com"
 					id="webAddress"
 					value={webAddress}
 					onChange={(e) => setWebAddress(e.target.value)}
 				/>
+				<label className="form__label" htmlFor="webAddress">
+					Web Address
+				</label>
 			</div>
 			<fieldset style={{ borderColor: selectedColor }}>
 				<legend>Background Colors</legend>

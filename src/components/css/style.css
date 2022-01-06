@@ -1,208 +1,202 @@
-/* #region General style */
 body {
-	color: #ffffff;
-	background-color: #001e3c;
-	position: relative;
-	min-height: 100vh;
 	padding: 0;
-	margin: 0;
+	position: relative;
+	height: 100vh;
+	color: #fff;
+	background-color: #001e3c;
 }
 
+/* #region header */
 .header {
-	position: sticky;
-	top: 0;
-	z-index: 1;
-	margin: 0;
-	padding: 0;
+	/* border: 5px solid red; */
 	display: flex;
-	justify-content: space-between;
 	flex-wrap: wrap;
-	width: 100%;
-	color: #ffffff;
-	background-color: #0a1929b8;
-	box-shadow: rgb(19 47 76) 0px -1px 1px inset;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #0a1929;
+	padding: 1rem;
 }
 
 .header__title {
 	margin: 0;
-	padding: 1rem;
-	font-weight: bold;
 }
 
 .header__contact {
 	margin: 0;
-	padding: 1rem;
-	min-width: 100px;
-	width: 200px;
-
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-
-	font-weight: bold;
-	text-align: center;
 }
+/* #region header */
 
-.header__contact a {
-	color: #ffffff;
-	text-decoration: none;
-}
-
+/* #region  main */
 .main {
-	width: 100%;
-	height: 100%;
-	display: grid;
-	/* place-items: center; */
-	margin: 0;
+	/* border: 5px solid red; */
+	width: calc(100% - 0.6rem);
+	height: 510px;
+	position: relative;
+	top: 0.5rem;
+	margin: 0 auto;
 }
 
+/* #region form */
 .form {
-	width: 100%;
-	border: 5px solid;
-	transition: all 0.3s;
-	border-radius: 1rem;
+	border: 5px solid red;
 	padding: 1rem;
-
-	/* box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-		6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
-		12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-		22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
-		41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
-		100px 100px 80px rgba(0, 0, 0, 0.07); */
+	border-radius: 0.5rem;
+	position: relative;
+	top: 50px;
+	margin: 0 auto;
+	width: clamp(50%, 300px, 100% - 0.6rem);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: all 0.5s ease-in-out;
 }
 
-.form__input {
+.form__group {
+	position: relative;
+	padding: 15px 0 0;
+	width: 50%;
+	margin-bottom: 0.5rem;
+}
+
+.form__field {
+	border: 1px solid #fff;
 	width: 100%;
-	height: 3rem;
-	border: none;
-	border-bottom: 1px solid #ffffff;
-	background-color: transparent;
-	color: #ffffff;
-	font-size: 1.2rem;
-	font-weight: bold;
+	border: 0;
+	outline: 0;
 	padding: 0.5rem;
-	margin: 0;
+	border-bottom: 2px solid #ffffff88;
+	background-color: transparent;
+	font-weight: bold;
+	color: #fff;
+	transition: border-color 0.2s ease-in-out;
 }
 
-input {
-	outline: none;
+.form__field::placeholder {
+	color: transparent;
 }
+
+.form__label {
+	display: block;
+	position: absolute;
+	font-size: 1rem;
+	top: 0;
+	font-size: 0.8rem;
+	color: #9b9b9b;
+	transition: 0.2s ease-in-out;
+}
+
+.form__field:placeholder-shown ~ .form__label {
+	font-size: 1.3rem;
+	cursor: text;
+	top: 20px;
+}
+
+.form__field:focus {
+	padding-bottom: 6px;
+	font-weight: 700px;
+	border-width: 3px;
+	border-image: linear-gradient(to right, #ff0062, #00ffff);
+	border-image-slice: 1;
+}
+
+.form__field:focus ~ .form__label {
+	font-size: 1rem;
+	display: block;
+	top: 0;
+	color: #2afadf;
+}
+/* #endregion form */
+
+/* #region Colors */
 
 .colors__container {
-	margin: 0;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
-	column-gap: 1rem;
+	justify-content: space-between;
 	align-items: center;
-	align-content: center;
+	width: 250px;
+	margin: 0 auto;
 }
 
 .color-box {
-	border-radius: 100%;
 	width: 50px;
 	height: 50px;
+	border: 1px solid #fff;
+	border-radius: 50%;
 	cursor: pointer;
 }
 
+/* #endregion Colors */
+
+/* #region Result */
 .result {
-	margin: 0;
-	background-color: coral;
+	/* border: 5px solid blue; */
 	display: flex;
-	flex-wrap: wrap;
-	width: 100%;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	padding: 1rem;
-	margin: 0;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+	width: calc(100% - 0.6rem);
 }
 
 .result__buttons {
+	/* margin-bottom: 0.2rem; */
+	z-index: -1;
+	width: 50%;
 	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	width: 100%;
-	margin: 0;
-	padding: 1rem;
+	justify-content: space-evenly;
+	column-gap: 1rem;
+}
+
+.button--result {
+	border: 1px solid black;
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	text-decoration: none;
+	color: #fff;
+	text-shadow: 0 0 0.5rem #000;
 }
 
 .result__img {
-	max-width: 1000px;
+	/* border: 5px solid red; */
+	width: clamp(50%, 300px, 100% - 0.6rem);
+	margin: 0 auto;
 	height: auto;
-	border-radius: 1rem;
-	box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-		6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
-		12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-		22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
-		41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
-		100px 100px 80px rgba(0, 0, 0, 0.07);
 }
 
 .result__img img {
+	border-radius: 1rem;
 	width: 100%;
-	height: auto;
 }
+/* #endregion Result */
 
 /* #region Buttons */
-.buttons {
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
-	align-items: center;
-	margin: 1rem 0;
-	align-items: center;
-	gap: 1rem;
-}
-
 .button {
-	padding: 1rem;
-}
+	/* border: 3px solid red; */
 
-.button--form {
-	padding: 1rem;
-	border: 1px solid #0a1929b8;
-	border-radius: 5px;
 	cursor: pointer;
-	font-size: 1.2rem;
-	font-weight: bold;
-	text-align: center;
-	text-decoration: none;
 }
 
-.button:hover {
-	background-color: #001e3c;
-	color: #ffffff;
-}
-/* #endregion */
+/* #endregion Buttons */
 
-/* #endregion */
+/* #endregion main */
 
-/* #region Footer */
+/* #region footer */
 .footer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 1rem;
+	/* border: 5px solid red; */
 	margin: 0;
-
 	position: absolute;
 	bottom: 0;
 	width: 100%;
 
-	color: #ffffff;
-	background-color: #000000;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-
-.footer a {
-	color: #ffffff;
-	text-decoration: none;
-}
-
-.footer a:hover {
-	color: #ffffff;
-	text-decoration: underline;
-}
-/* #endregion */
+/* #endregion footer */
 
 /* #region Spinner */
 .loader,
@@ -264,4 +258,5 @@ input {
 		height: 5em;
 	}
 }
-/* #endregion */
+
+/* #endregion Spinner */
