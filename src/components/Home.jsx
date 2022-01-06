@@ -1,5 +1,8 @@
 import { useState } from "react";
+import "./css/style.css";
+import { Footer } from "./Footer";
 import { Form } from "./Form";
+import { Header } from "./Header";
 import { Result } from "./Result";
 
 export const Home = () => {
@@ -9,15 +12,16 @@ export const Home = () => {
 
 	return (
 		<>
-			<h1>Website Screenshots</h1>
+			<Header />
 
-			<main>
+			<main className="main">
 				{!isValid ? (
 					<Form setUrl={setUrl} setColor={setColor} setIsValid={setIsValid} />
 				) : (
 					<Result url={url} color={color} setIsValid={setIsValid} />
 				)}
 			</main>
+			<Footer />
 		</>
 	);
 };

@@ -8,11 +8,12 @@ export const Form = ({ setUrl, setColor, setIsValid }) => {
 	const [colorList, setColorList] = useState(getRandomColors());
 
 	return (
-		<section style={{ borderColor: selectedColor }}>
-			<div>
+		<section className="form" style={{ borderColor: selectedColor }}>
+			<div className="form__input">
 				<label htmlFor="webAddress">Web Address:</label>
 				<input
 					type="text"
+					placeholder="https://example.com"
 					id="webAddress"
 					value={webAddress}
 					onChange={(e) => setWebAddress(e.target.value)}
@@ -20,21 +21,26 @@ export const Form = ({ setUrl, setColor, setIsValid }) => {
 			</div>
 			<fieldset style={{ borderColor: selectedColor }}>
 				<legend>Background Colors</legend>
-				<div>
+				<div className="colors__container">
 					{colorList.map((color, index) => (
 						<div
 							key={color}
 							style={{ backgroundColor: colorList[index] }}
+							className="color-box"
 							onClick={() => setSelectedColor(colorList[index])}
 						/>
 					))}
 				</div>
 			</fieldset>
 			<div>
-				<button onClick={() => setColorList(getRandomColors())}>
+				<button
+					className="button--form"
+					onClick={() => setColorList(getRandomColors())}
+				>
 					<span>Generate Random Colors</span>
 				</button>
 				<button
+					className="button--form"
 					type="button"
 					disabled={!validateUrl(webAddress)}
 					onClick={() => {

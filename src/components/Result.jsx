@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { generateScreenshotUrl } from "../helpers/functions";
 
 const Spinner = ({ color }) => (
-	<div style={{ color: color, backgroundColor: color }} />
+	<div style={{ color, backgroundColor: color }} className="loader" />
 );
 
 export const Result = ({ url, color, setIsValid }) => {
@@ -26,18 +26,26 @@ export const Result = ({ url, color, setIsValid }) => {
 			{!isVisible ? (
 				<Spinner color={color} />
 			) : (
-				<section>
-					<div>
+				<section className="result">
+					<div className="result__buttons">
 						<button
+							className="button"
+							style={{ backgroundColor: color }}
 							onClick={() => {
 								setIsValid(false);
 							}}
 						>
 							Back
 						</button>
-						<a href={downloadUrl}>Download</a>
+						<a
+							className="button"
+							style={{ backgroundColor: color }}
+							href={downloadUrl}
+						>
+							Download
+						</a>
 					</div>
-					<div>
+					<div className="result__img">
 						<img src={downloadUrl} alt="screenshot" />
 					</div>
 				</section>
