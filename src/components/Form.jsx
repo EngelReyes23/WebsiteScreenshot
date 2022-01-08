@@ -1,11 +1,30 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { getRandomColors, validateUrl } from "../helpers/functions";
 
 export const Form = ({ setUrl, setColor, setIsValid }) => {
 	const [webAddress, setWebAddress] = useState("");
-	const [selectedColor, setSelectedColor] = useState("#0000ff");
+	const [selectedColor, setSelectedColor] = useState("#ffffff");
 	const [colorList, setColorList] = useState(getRandomColors());
+
+	const btn = useRef();
+
+	const handleInputChange = (e) => {
+		setWebAddress(e.target.value);
+		if (validateUrl(e.target.value)) {
+			btn.current.style.border = "solid white";
+			btn.current.style.color = "white";
+		} else {
+			btn.current.style.border = "solid gray";
+			btn.current.style.color = "gray";
+		}
+	};
+
+	const handleClick = () => {
+		setUrl(webAddress);
+		setColor(selectedColor);
+		setIsValid(true);
+	};
 
 	return (
 		<section
@@ -19,14 +38,14 @@ export const Form = ({ setUrl, setColor, setIsValid }) => {
 					placeholder="https://example.com"
 					id="webAddress"
 					value={webAddress}
-					onChange={(e) => setWebAddress(e.target.value)}
+					onChange={handleInputChange}
 				/>
 				<label className="form__label" htmlFor="webAddress">
 					Web Address
 				</label>
 			</div>
 			<fieldset style={{ borderColor: selectedColor }}>
-				<legend>Background Colors</legend>
+				<legend>[ Background Colors ]</legend>
 				<div className="colors__container">
 					{colorList.map((color, index) => (
 						<div
@@ -38,24 +57,22 @@ export const Form = ({ setUrl, setColor, setIsValid }) => {
 					))}
 				</div>
 			</fieldset>
-			<div>
+			<div className="form__buttons">
 				<button
-					className="button--form"
+					className="button button-random"
 					onClick={() => setColorList(getRandomColors())}
 				>
-					<span>Generate Random Colors</span>
+					Generate Random Colors
+					<span></span>
 				</button>
 				<button
-					className="button--form"
-					type="button"
+					ref={btn}
+					className="button button-screenshot"
 					disabled={!validateUrl(webAddress)}
-					onClick={() => {
-						setUrl(webAddress);
-						setColor(selectedColor);
-						setIsValid(true);
-					}}
+					onClick={handleClick}
 				>
 					Generate Screenshot
+					<span />
 				</button>
 			</div>
 		</section>
